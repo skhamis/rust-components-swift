@@ -21,9 +21,6 @@ let package = Package(
         .library(name: "Places", targets: ["Places"]),
     ],
     dependencies: [
-        // TODO: ship Glean via this same bundle?
-        .package(name: "Glean", url: "https://github.com/mozilla/glean-swift", from: "43.0.2"),
-        .package(name: "SwiftKeychainWrapper", url: "https://github.com/jrendel/SwiftKeychainWrapper", from: "4.0.1"),
     ],
     targets: [
         /*
@@ -44,8 +41,10 @@ let package = Package(
             // For release artifacts, reference the MozillaRustComponents as a URL with checksum.
             // IMPORTANT: The checksum has to be on the line directly after the `url`
             // this is important for our release script so that all values are updated correctly
-            url: url,
-            checksum: checksum
+            // url: url,
+            // checksum: checksum
+            url: "https://126831-129966583-gh.circle-artifacts.com/0/dist/MozillaRustComponents.xcframework.zip",
+            checksum: "c95d4501b64b05a8ec792e4eb82b69a3029f943e03234d4cada6cebc9af72498"
 
             // For local testing, you can point at an (unzipped) XCFramework that's part of the repo.
             // Note that you have to actually check it in and make a tag for it to work correctly.
@@ -68,7 +67,7 @@ let package = Package(
         ),
         .target(
             name: "Nimbus",
-            dependencies: ["MozillaRustComponentsWrapper", "Glean"],
+            dependencies: ["MozillaRustComponentsWrapper"],
             path: "generated/nimbus"
         ),
         .target(
@@ -83,7 +82,7 @@ let package = Package(
         ),
         .target(
            name: "FxAClient",
-           dependencies: ["MozillaRustComponentsWrapper", "SwiftKeychainWrapper"],
+           dependencies: ["MozillaRustComponentsWrapper"],
            path: "generated/fxa-client"
         ),
         .target(

@@ -13,7 +13,7 @@ THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 if [ -n "$1" ]; then
 APP_SERVICES_DIR=$1
 else
-APP_SERVICES_DIR="$THIS_DIR/application-services"
+APP_SERVICES_DIR="../application-services"
 fi
 
 UNIFFI_BINDGEN=(cargo run --manifest-path "$APP_SERVICES_DIR/tools/embedded-uniffi-bindgen/Cargo.toml")
@@ -59,7 +59,7 @@ rm -rf "$FXA_CLIENT_DIR" && mkdir -p "$FXA_CLIENT_DIR"
 # UniFFI bindings.
 "${UNIFFI_BINDGEN[@]}" generate -l swift -o "$FXA_CLIENT_DIR/Generated" "$APP_SERVICES_DIR/components/fxa-client/src/fxa_client.udl"
 # Copy the hand-written Swift, since it all needs to be together in one directory.
-cp -r "$APP_SERVICES_DIR/components/fxa-client/ios/FxAClient" "$FXA_CLIENT_DIR/FxAClient"
+#cp -r "$APP_SERVICES_DIR/components/fxa-client/ios/FxAClient" "$FXA_CLIENT_DIR/FxAClient"
 
 ###
 #
@@ -161,3 +161,5 @@ rm -rf "$VIADUCT_DIR" && mkdir -p "$VIADUCT_DIR"
 
 # We only need to copy the hand-written Swift, Viaduct does not use `uniffi` yet
 cp -r "$APP_SERVICES_DIR/components/viaduct/ios/" $VIADUCT_DIR
+
+echo "Successfully generated uniffi code!"
