@@ -29,6 +29,8 @@ class PersistedFirefoxAccount {
     }
 
     public convenience init(config: FxAConfig) {
+        Viaduct.shared.useReqwestBackend()
+        FxALog.info("reqwest called")
         self.init(inner: FirefoxAccount(contentUrl: config.contentUrl,
                                         clientId: config.clientId,
                                         redirectUri: config.redirectUri,
@@ -60,6 +62,9 @@ class PersistedFirefoxAccount {
         entrypoint: String,
         metrics: MetricsParams = MetricsParams(parameters: [:])
     ) throws -> URL {
+
+        Viaduct.shared.useReqwestBackend()
+
         return try notifyAuthErrors {
             URL(string: try self.inner.beginOauthFlow(
                 scopes: scopes,
