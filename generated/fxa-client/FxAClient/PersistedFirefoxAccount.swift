@@ -6,6 +6,7 @@ import Foundation
 #if canImport(MozillaRustComponents)
     import MozillaRustComponents
 #endif
+import Viaduct
 
 /// This class inherits from the Rust `FirefoxAccount` and adds:
 /// - Automatic state persistence through `PersistCallback`.
