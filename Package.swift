@@ -19,6 +19,7 @@ let package = Package(
         .library(name: "Push", targets: ["Push"]),
         .library(name: "Tabs", targets: ["Tabs"]),
         .library(name: "Places", targets: ["Places"]),
+        .library(name: "AppServicesLib", targets: ["MozillaRustComponentsWrapper"]),
     ],
     dependencies: [
     ],
@@ -55,52 +56,54 @@ let package = Package(
         ),
         .target(
             name: "RustLog",
-            dependencies: ["MozillaRustComponentsWrapper"],
+            //dependencies: ["MozillaRustComponentsWrapper"],
             path: "generated/rc_log"
         ),
         .target(
             name: "Viaduct",
-            dependencies: ["MozillaRustComponentsWrapper"],
+            //dependencies: ["MozillaRustComponentsWrapper"],
             path: "generated/viaduct"
         ),
         .target(
             name: "Nimbus",
-            dependencies: ["MozillaRustComponentsWrapper"],
+            //dependencies: ["MozillaRustComponentsWrapper"],
             path: "generated/nimbus"
         ),
         .target(
             name: "CrashTest",
-            dependencies: ["MozillaRustComponentsWrapper"],
+            //dependencies: ["MozillaRustComponentsWrapper"],
             path: "generated/crashtest"
         ),
         .target(
            name: "Logins",
-           dependencies: ["MozillaRustComponentsWrapper", "Sync15"],
+           //dependencies: ["MozillaRustComponentsWrapper", "Sync15"],
+           dependencies: ["Sync15"],
            path: "generated/logins"
         ),
         .target(
            name: "FxAClient",
-           dependencies: ["MozillaRustComponentsWrapper"],
+           //dependencies: ["MozillaRustComponentsWrapper"],
            path: "generated/fxa-client"
         ),
         .target(
             name: "Autofill",
-            dependencies: ["MozillaRustComponentsWrapper"],
+            //dependencies: ["MozillaRustComponentsWrapper"],
             path: "generated/autofill"
         ),
         .target(
             name: "Push",
-            dependencies: ["MozillaRustComponentsWrapper"],
+            //dependencies: ["MozillaRustComponentsWrapper"],
             path: "generated/push"
         ),
         .target(
             name: "Tabs",
-            dependencies: ["MozillaRustComponentsWrapper"],
+            //dependencies: ["MozillaRustComponentsWrapper"],
             path: "generated/tabs"
         ),
         .target(
             name: "Places",
-            dependencies: ["MozillaRustComponentsWrapper", "Sync15"],
+            //dependencies: ["MozillaRustComponentsWrapper", "Sync15"],
+            dependencies: ["Sync15"],
             path: "generated/places"
         )
     ]
